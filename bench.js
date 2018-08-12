@@ -35,8 +35,8 @@ const csvPath = 'results.csv'
 let csv = [['Method', 'GID', 'Leaky', 'Format', 'Re-use', 'Cache', 'Sync', 'Ops/sec', 'Deviation', 'Mean', 'MOE', 'RME', 'Samples', 'SEM', 'Variance']]
 let uuidTable = '| Method | Leaky | Format | Re-use | Cache | Sync | Ops/sec | RME | Samples |\n' +
                 '|--------|-------|--------|--------|-------|------|---------|-----|---------|\n'
-let otherTable = '| Method | GID | Example | Leaky | Re-use | Cache | Sync | Ops/sec | RME | Samples |\n' +
-                 '|--------|-----|---------|-------|--------|-------|------|---------|-----|---------|\n'
+let otherTable = '| Method | GID | Leaky | Re-use | Cache | Sync | Ops/sec | RME | Samples | Example |\n' +
+                 '|--------|-----|-------|--------|-------|------|---------|-----|---------|---------|\n'
 
 suite
   .on('cycle', function (event) {
@@ -48,14 +48,14 @@ suite
       otherTable += `| ${[
         `[${t.name}] ${t.postfix || ''}`,
         check(t.gid),
-        `<sub><sub>${t.example}</sub></sub>`,
         leaky(t),
         check(t.reuse),
         t.cacheSize || 'n/a',
         check(!t.defer),
         numeral(t.hz).format('0,0'),
         `±${t.stats.rme.toFixed(2)}%`,
-        t.stats.sample.length
+        t.stats.sample.length,
+        `<sub><sub>${t.example}</sub></sub>`
       ].join(' | ')} |\n`
     } else {
       uuidTable += `| ${[
