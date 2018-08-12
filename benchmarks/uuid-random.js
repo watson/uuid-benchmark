@@ -3,9 +3,26 @@
 const uuid = require('uuid-random')
 
 module.exports = function (suite) {
-  suite.add('uuid-random', function () {
+  const name = 'uuid-random'
+
+  suite.add(name, function () {
     uuid()
   }, {
-    format: 'uuid'
+    format: 'uuid',
+    cacheSize: 512
+  })
+
+  suite.add(name, function () {
+    uuid.bin().toString('hex')
+  }, {
+    format: 'hex',
+    cacheSize: 512
+  })
+
+  suite.add(name, function () {
+    uuid.bin()
+  }, {
+    format: 'buffer',
+    cacheSize: 512
   })
 }
