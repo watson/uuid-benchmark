@@ -1,4 +1,4 @@
-# UUID Benchmark
+# Node.js UUID Benchmark 🐢🚀
 
 _See raw results in [`results.csv`](results.csv)_
 
