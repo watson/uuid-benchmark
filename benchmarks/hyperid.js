@@ -9,7 +9,7 @@ module.exports = function (suite) {
   suite.add(name, function () {
     hyperid()()
   }, {
-    postfix: 'hyperid()()',
+    postfix: 'cold start',
     leaky: true,
     format: 'other',
     gid: true,
@@ -22,7 +22,7 @@ module.exports = function (suite) {
     onStart () {
       this.instance = hyperid()
     },
-    postfix: 'instance()',
+    postfix: 'normal',
     leaky: true,
     format: 'other',
     gid: true,
