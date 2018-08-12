@@ -1,7 +1,9 @@
 # Node.js UUID Benchmark 🐢🚀
 
 The following benchmark results are generated on a MacBook (Early 2016)
-with a 1,3 GHz Intel Core m7 processor using the following command:
+with a 1,3 GHz Intel Core m7 processor using Node.js 10.8.0.
+
+To run them your self, run:
 
 ```
 npm run bench
