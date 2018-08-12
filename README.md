@@ -131,6 +131,7 @@ _See raw results in [`results.csv`](results.csv)_
   - `uuid` - Indicates that the output is a UUID formatted string, e.g. `3a017fc5-4f50-4db9-b0ce-4547ba0a1bfd`
   - `hex` - Indicates that the output is a pure hex formatted string, e.g. `3a017fc54f504db9b0ce4547ba0a1bfd`
   - `buffer` - Indicates that the output is a raw Buffer object
+  - `custom` - Indicates that the output is not a UUID or 128 bit number
 - **Re-use:** Indicates an output buffer was re-used between each test to potentially reduce the number of objects that needed to be created
 - **Cache:**
   - `n/a` - Only the amount of bytes required to generate a 128 bit number was read into memory
@@ -149,6 +150,7 @@ _See raw results in [`results.csv`](results.csv)_
 [fast-uuid]: https://www.npmjs.com/package/fast-uuid
 [uuid-random]: https://www.npmjs.com/package/uuid-random
 [sodium-uuid]: https://www.npmjs.com/package/sodium-uuid
+[hyperid]: https://www.npmjs.com/package/hyperid
 [crypto.randomBytes]: https://nodejs.org/api/crypto.html#crypto_crypto_randombytes_size_callback
 [crypto.randomFillSync]: https://nodejs.org/api/crypto.html#crypto_crypto_randomfillsync_buffer_offset_size
 [crypto.randomFill]: https://nodejs.org/api/crypto.html#crypto_crypto_randomfill_buffer_offset_size_callback
