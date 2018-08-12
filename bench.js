@@ -8,15 +8,21 @@ const suite = new Suite()
 
 suite.cacheSizes = [16 ** 2, 16 ** 3, 16 ** 4]
 
-require('./benchmarks/uuid')(suite)
-require('./benchmarks/fast-uuid')(suite)
-require('./benchmarks/uuid-random')(suite)
-require('./benchmarks/sodium-uuid')(suite)
-require('./benchmarks/hyperid')(suite)
-require('./benchmarks/crypto.randomBytes')(suite)
-require('./benchmarks/crypto.randomFillSync')(suite)
-require('./benchmarks/crypto.randomFill')(suite)
-require('./benchmarks/dev-random')(suite)
+const single = process.argv[2]
+
+if (single) {
+  require(single)(suite)
+} else {
+  require('./benchmarks/uuid')(suite)
+  require('./benchmarks/fast-uuid')(suite)
+  require('./benchmarks/uuid-random')(suite)
+  require('./benchmarks/sodium-uuid')(suite)
+  require('./benchmarks/hyperid')(suite)
+  require('./benchmarks/crypto.randomBytes')(suite)
+  require('./benchmarks/crypto.randomFillSync')(suite)
+  require('./benchmarks/crypto.randomFill')(suite)
+  require('./benchmarks/dev-random')(suite)
+}
 
 const readmePath = 'README.md'
 const csvPath = 'results.csv'
@@ -31,6 +37,8 @@ readme = readme.slice(0, startIndex)
 
 suite
   .on('start', function () {
+    if (single) return // if running just a single benchmark, skip updating result files
+
     readme += startMarker
     readme += '| Method | Leaky | Format | Re-use | Cache | Sync | Ops/sec | RME | Samples |\n'
     readme += '|--------|-------|--------|--------|-------|------|---------|-----|---------|\n'
@@ -39,12 +47,18 @@ suite
   })
   .on('cycle', function (event) {
     const t = event.target
+
     console.log(`${desc(t)} x ${numeral(t.hz).format('0,0')} ops/sec ±${t.stats.rme.toFixed(2)}% (${t.stats.sample.length} runs sampled)`)
+
+    if (single) return // if running just a single benchmark, skip updating result files
+
     readme += `| [${t.name}] ${t.postfix || ''} | ${leaky(t)} | ${t.format} | ${check(t.reuse)} | ${t.cacheSize || 'n/a'} | ${check(!t.defer)} | ${numeral(t.hz).format('0,0')} | ±${t.stats.rme.toFixed(2)}% | ${t.stats.sample.length} |\n`
     csv += `"${fullName(t)}","${t.leaky ? 'Y' : 'N'}","${t.format}","${t.reuse ? 'Y' : 'N'}",${t.cacheSize || ''},"${t.defer ? 'N' : 'Y'}",${t.hz},${t.stats.deviation},${t.stats.mean},${t.stats.moe},${t.stats.rme},${t.stats.sample.length},${t.stats.sem},${t.stats.variance}\n`
   })
   .on('complete', function () {
     console.log('Fastest is ' + desc(this.filter('fastest')[0]))
+
+    if (single) return // if running just a single benchmark, skip updating result files
 
     readme += endMarker
     readme += postChunk
