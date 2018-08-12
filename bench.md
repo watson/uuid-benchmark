@@ -62,3 +62,28 @@
 | [/dev/urandom] |  | hex |  | 65536 |  | 353,085 | ±1.83% | 73 |
 | [/dev/urandom] |  | hex | ✅ | 65536 |  | 366,854 | ±2.02% | 72 |
 | [/dev/urandom] |  | hex | ✅ | 65536 | ✅ | 513,027 | ±1.83% | 30 |
+
+- **Method:** Name of npm module, Node.js core function, or OS based random generator used
+- **Secure:** Indicates of the method of generating the UUID is considered secure
+- **Format:**
+  - `uuid` - Indicates that the output is a UUID formatted string, e.g. `3a017fc5-4f50-4db9-b0ce-4547ba0a1bfd`
+  - `hex` - Indicates that the output is a pure hex formatted string, e.g. `3a017fc54f504db9b0ce4547ba0a1bfd`
+- **Re-use:** Indicates an output buffer was re-used between each test to potentially reduce the number of objects that needed to be created
+- **Cache:**
+  - `n/a` - Only the amount of bytes required to generate a 128 bit number was read into memory
+  - &lt;Number> - Number of bytes read into memory the first time a 128 bit number was requested. Subsequent runs would use the leftover bytes in the cache until it had been depleted, at which time another chunk of bytes would be read into memory
+- **Sync:** Indicates that the UUID generation was performed synchronously
+- **Ops/sec:** Number of UUID's generated per second
+- **RME:** The relative margin of error (expressed as a percentage of the mean)
+- **Sampled:** Number of runs sampled
+
+[uuid/v1]: https://www.npmjs.com/package/uuid
+[uuid/v4]: https://www.npmjs.com/package/uuid
+[fast-uuid]: https://www.npmjs.com/package/fast-uuid
+[uuid-random]: https://www.npmjs.com/package/uuid-random
+[sodium-uuid]: https://www.npmjs.com/package/sodium-uuid
+[crypto.randomBytes]: https://nodejs.org/api/crypto.html#crypto_crypto_randombytes_size_callback
+[crypto.randomFillSync]: https://nodejs.org/api/crypto.html#crypto_crypto_randomfillsync_buffer_offset_size
+[crypto.randomFill]: https://nodejs.org/api/crypto.html#crypto_crypto_randomfill_buffer_offset_size_callback
+[/dev/random]: https://en.wikipedia.org/wiki//dev/random
+[/dev/urandom]: https://en.wikipedia.org/wiki//dev/random
