@@ -48,7 +48,7 @@ suite
       otherTable += `| ${[
         `[${t.name}] ${t.postfix || ''}`,
         check(t.gid),
-        t.example,
+        `<sub><sub>${t.example}</sub></sub>`,
         leaky(t),
         check(t.reuse),
         t.cacheSize || 'n/a',
