@@ -12,7 +12,6 @@ module.exports = function (suite) {
     onStart () {
       this.buf = Buffer.alloc(16)
     },
-    secure: true,
     format: 'hex',
     reuse: true
   })
@@ -23,7 +22,6 @@ module.exports = function (suite) {
     onStart () {
       this.buf = Buffer.alloc(16)
     },
-    secure: true,
     format: 'buffer',
     reuse: true
   })
@@ -45,7 +43,6 @@ module.exports = function (suite) {
         this.offset = 0
         this.cache = Buffer.alloc(cacheSize)
       },
-      secure: true,
       format: 'hex',
       cacheSize
     })
@@ -67,7 +64,6 @@ module.exports = function (suite) {
         this.buf = Buffer.alloc(16)
         this.cache = Buffer.alloc(cacheSize)
       },
-      secure: true,
       format: 'hex',
       reuse: true,
       cacheSize
@@ -87,7 +83,6 @@ module.exports = function (suite) {
         this.offset = 0
         this.cache = Buffer.alloc(cacheSize)
       },
-      secure: true,
       format: 'buffer',
       cacheSize
     })
@@ -107,7 +102,6 @@ module.exports = function (suite) {
         this.buf = Buffer.alloc(16)
         this.cache = Buffer.alloc(cacheSize)
       },
-      secure: true,
       format: 'buffer',
       reuse: true,
       cacheSize

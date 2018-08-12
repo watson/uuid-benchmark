@@ -8,6 +8,7 @@ module.exports = function (suite) {
     suite.add(name, function () {
       uuid()
     }, {
+      leaky: true,
       format: 'uuid'
     })
 
@@ -16,6 +17,7 @@ module.exports = function (suite) {
       uuid(null, buf)
       buf.toString('hex')
     }, {
+      leaky: true,
       format: 'hex'
     })
 
@@ -26,6 +28,7 @@ module.exports = function (suite) {
       onStart () {
         this.buf = Buffer.alloc(16)
       },
+      leaky: true,
       format: 'hex',
       reuse: true
     })
@@ -34,6 +37,7 @@ module.exports = function (suite) {
       const buf = Buffer.alloc(16)
       uuid(null, buf)
     }, {
+      leaky: true,
       format: 'buffer'
     })
 
@@ -43,6 +47,7 @@ module.exports = function (suite) {
       onStart () {
         this.buf = Buffer.alloc(16)
       },
+      leaky: true,
       format: 'buffer',
       reuse: true
     })
@@ -55,7 +60,6 @@ module.exports = function (suite) {
     suite.add(name, function () {
       uuid()
     }, {
-      secure: true,
       format: 'uuid'
     })
 
@@ -64,7 +68,6 @@ module.exports = function (suite) {
       uuid(null, buf)
       buf.toString('hex')
     }, {
-      secure: true,
       format: 'hex'
     })
 
@@ -75,7 +78,6 @@ module.exports = function (suite) {
       onStart () {
         this.buf = Buffer.alloc(16)
       },
-      secure: true,
       format: 'hex',
       reuse: true
     })
@@ -84,7 +86,6 @@ module.exports = function (suite) {
       const buf = Buffer.alloc(16)
       uuid(null, buf)
     }, {
-      secure: true,
       format: 'buffer'
     })
 
@@ -94,7 +95,6 @@ module.exports = function (suite) {
       onStart () {
         this.buf = Buffer.alloc(16)
       },
-      secure: true,
       format: 'buffer',
       reuse: true
     })

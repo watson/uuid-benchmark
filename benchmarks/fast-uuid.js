@@ -6,6 +6,7 @@ module.exports = function (suite) {
   suite.add('fast-uuid', function () {
     uuid()
   }, {
+    leaky: true,
     format: 'uuid'
   })
 }

@@ -8,7 +8,6 @@ module.exports = function (suite) {
   suite.add(name, function () {
     uuid().toString('hex')
   }, {
-    secure: true,
     format: 'hex'
   })
 
@@ -19,7 +18,6 @@ module.exports = function (suite) {
     onStart () {
       this.buf = Buffer.alloc(16)
     },
-    secure: true,
     format: 'hex',
     reuse: true
   })
@@ -27,7 +25,6 @@ module.exports = function (suite) {
   suite.add(name, function () {
     uuid()
   }, {
-    secure: true,
     format: 'buffer'
   })
 
@@ -37,7 +34,6 @@ module.exports = function (suite) {
     onStart () {
       this.buf = Buffer.alloc(16)
     },
-    secure: true,
     format: 'buffer',
     reuse: true
   })

@@ -17,7 +17,7 @@ module.exports = function (suite) {
         this.buf = Buffer.alloc(16)
       },
       defer: true,
-      secure: path === '/dev/random',
+      leaky: path === '/dev/urandom',
       format: 'hex',
       reuse: true
     })
@@ -30,7 +30,7 @@ module.exports = function (suite) {
         this.fd = fs.openSync(path, 'r')
         this.buf = Buffer.alloc(16)
       },
-      secure: path === '/dev/random',
+      leaky: path === '/dev/urandom',
       format: 'hex',
       reuse: true
     })
@@ -45,7 +45,7 @@ module.exports = function (suite) {
         this.buf = Buffer.alloc(16)
       },
       defer: true,
-      secure: path === '/dev/random',
+      leaky: path === '/dev/urandom',
       format: 'buffer',
       reuse: true
     })
@@ -57,7 +57,7 @@ module.exports = function (suite) {
         this.fd = fs.openSync(path, 'r')
         this.buf = Buffer.alloc(16)
       },
-      secure: path === '/dev/random',
+      leaky: path === '/dev/urandom',
       format: 'buffer',
       reuse: true
     })
@@ -86,7 +86,7 @@ module.exports = function (suite) {
           this.offset = 0
         },
         defer: true,
-        secure: path === '/dev/random',
+        leaky: path === '/dev/urandom',
         format: 'hex',
         cacheSize
       })
@@ -115,7 +115,7 @@ module.exports = function (suite) {
           this.offset = 0
         },
         defer: true,
-        secure: path === '/dev/random',
+        leaky: path === '/dev/urandom',
         format: 'hex',
         reuse: true,
         cacheSize
@@ -139,7 +139,7 @@ module.exports = function (suite) {
           this.buf = Buffer.alloc(16)
           this.offset = 0
         },
-        secure: path === '/dev/random',
+        leaky: path === '/dev/urandom',
         format: 'hex',
         reuse: true,
         cacheSize
@@ -166,7 +166,7 @@ module.exports = function (suite) {
           this.offset = 0
         },
         defer: true,
-        secure: path === '/dev/random',
+        leaky: path === '/dev/urandom',
         format: 'buffer',
         cacheSize
       })
@@ -193,7 +193,7 @@ module.exports = function (suite) {
           this.offset = 0
         },
         defer: true,
-        secure: path === '/dev/random',
+        leaky: path === '/dev/urandom',
         format: 'buffer',
         reuse: true,
         cacheSize
@@ -215,7 +215,7 @@ module.exports = function (suite) {
           this.buf = Buffer.alloc(16)
           this.offset = 0
         },
-        secure: path === '/dev/random',
+        leaky: path === '/dev/urandom',
         format: 'buffer',
         reuse: true,
         cacheSize

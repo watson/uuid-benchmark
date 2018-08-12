@@ -9,6 +9,7 @@ module.exports = function (suite) {
     hyperid()()
   }, {
     postfix: 'hyperid()()',
+    leaky: true,
     format: 'custom'
   })
 
@@ -19,6 +20,7 @@ module.exports = function (suite) {
       this.instance = hyperid()
     },
     postfix: 'instance()',
+    leaky: true,
     format: 'custom'
   })
 }

@@ -12,14 +12,12 @@ module.exports = function (suite) {
     })
   }, {
     defer: true,
-    secure: true,
     format: 'hex'
   })
 
   suite.add(name, function () {
     crypto.randomBytes(16).toString('hex')
   }, {
-    secure: true,
     format: 'hex'
   })
 
@@ -29,14 +27,12 @@ module.exports = function (suite) {
     })
   }, {
     defer: true,
-    secure: true,
     format: 'buffer'
   })
 
   suite.add(name, function () {
     crypto.randomBytes(16)
   }, {
-    secure: true,
     format: 'buffer'
   })
 
@@ -56,7 +52,6 @@ module.exports = function (suite) {
       onStart () {
         this.offset = 0
       },
-      secure: true,
       format: 'hex',
       cacheSize
     })
@@ -77,7 +72,6 @@ module.exports = function (suite) {
         this.offset = 0
         this.buf = Buffer.alloc(16)
       },
-      secure: true,
       format: 'hex',
       reuse: true,
       cacheSize
@@ -105,7 +99,6 @@ module.exports = function (suite) {
         this.offset = 0
       },
       defer: true,
-      secure: true,
       format: 'hex',
       cacheSize
     })
@@ -133,7 +126,6 @@ module.exports = function (suite) {
         this.buf = Buffer.alloc(16)
       },
       defer: true,
-      secure: true,
       format: 'hex',
       reuse: true,
       cacheSize
@@ -152,7 +144,6 @@ module.exports = function (suite) {
       onStart () {
         this.offset = 0
       },
-      secure: true,
       format: 'buffer',
       cacheSize
     })
@@ -171,7 +162,6 @@ module.exports = function (suite) {
         this.offset = 0
         this.buf = Buffer.alloc(16)
       },
-      secure: true,
       format: 'buffer',
       reuse: true,
       cacheSize
@@ -197,7 +187,6 @@ module.exports = function (suite) {
         this.offset = 0
       },
       defer: true,
-      secure: true,
       format: 'buffer',
       cacheSize
     })
@@ -223,7 +212,6 @@ module.exports = function (suite) {
         this.buf = Buffer.alloc(16)
       },
       defer: true,
-      secure: true,
       format: 'buffer',
       reuse: true,
       cacheSize
