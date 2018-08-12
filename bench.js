@@ -28,6 +28,7 @@ if (single) {
   require('./benchmarks/hyperid')(suite)
   require('./benchmarks/cuid')(suite)
   require('./benchmarks/shortid')(suite)
+  require('./benchmarks/nanoid')(suite)
 }
 
 const readmePath = 'README.md'
