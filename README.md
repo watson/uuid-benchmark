@@ -181,4 +181,5 @@ not all of them are globally unique.
 [/dev/random]: https://en.wikipedia.org/wiki//dev/random
 [/dev/urandom]: https://en.wikipedia.org/wiki//dev/random
 [hyperid]: https://www.npmjs.com/package/hyperid
+[cuid]: https://www.npmjs.com/package/cuid
 [shortid]: https://www.npmjs.com/package/shortid

@@ -6,6 +6,7 @@
   "dependencies": {
     "benchmark": "^2.1.4",
     "csv-stringify": "^3.1.1",
+    "cuid": "^2.1.1",
     "fast-uuid": "^1.0.1",
     "hyperid": "^1.4.1",
     "numeral": "^2.0.6",

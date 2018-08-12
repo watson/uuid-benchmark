@@ -26,6 +26,7 @@ if (single) {
 
   // other
   require('./benchmarks/hyperid')(suite)
+  require('./benchmarks/cuid')(suite)
   require('./benchmarks/shortid')(suite)
 }
 
