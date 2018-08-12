@@ -32,16 +32,16 @@ readme = readme.slice(0, startIndex)
 suite
   .on('start', function () {
     readme += startMarker
-    readme += '| Method | Secure | Format | Re-use | Cache | Sync | Ops/sec | RME | Samples |\n'
-    readme += '|--------|--------|--------|--------|-------|------|---------|-----|---------|\n'
+    readme += '| Method | Leaky | Format | Re-use | Cache | Sync | Ops/sec | RME | Samples |\n'
+    readme += '|--------|-------|--------|--------|-------|------|---------|-----|---------|\n'
 
-    csv += '"Method","Secure","Format","Re-use","Cache","Sync","Ops/sec","Deviation","Mean","MOE","RME","Samples","SEM","Variance"\n'
+    csv += '"Method","Leaky","Format","Re-use","Cache","Sync","Ops/sec","Deviation","Mean","MOE","RME","Samples","SEM","Variance"\n'
   })
   .on('cycle', function (event) {
     const t = event.target
     console.log(`${desc(t)} x ${numeral(t.hz).format('0,0')} ops/sec ±${t.stats.rme.toFixed(2)}% (${t.stats.sample.length} runs sampled)`)
-    readme += `| [${t.name}] ${t.postfix || ''} | ${check(t.secure)} | ${t.format} | ${check(t.reuse)} | ${t.cacheSize || 'n/a'} | ${check(!t.defer)} | ${numeral(t.hz).format('0,0')} | ±${t.stats.rme.toFixed(2)}% | ${t.stats.sample.length} |\n`
-    csv += `"${fullName(t)}","${t.secure ? 'Y' : 'N'}","${t.format}","${t.reuse ? 'Y' : 'N'}",${t.cacheSize || ''},"${t.defer ? 'N' : 'Y'}",${t.hz},${t.stats.deviation},${t.stats.mean},${t.stats.moe},${t.stats.rme},${t.stats.sample.length},${t.stats.sem},${t.stats.variance}\n`
+    readme += `| [${t.name}] ${t.postfix || ''} | ${leaky(t)} | ${t.format} | ${check(t.reuse)} | ${t.cacheSize || 'n/a'} | ${check(!t.defer)} | ${numeral(t.hz).format('0,0')} | ±${t.stats.rme.toFixed(2)}% | ${t.stats.sample.length} |\n`
+    csv += `"${fullName(t)}","${t.secure ? 'N' : 'Y'}","${t.format}","${t.reuse ? 'Y' : 'N'}",${t.cacheSize || ''},"${t.defer ? 'N' : 'Y'}",${t.hz},${t.stats.deviation},${t.stats.mean},${t.stats.moe},${t.stats.rme},${t.stats.sample.length},${t.stats.sem},${t.stats.variance}\n`
   })
   .on('complete', function () {
     console.log('Fastest is ' + desc(this.filter('fastest')[0]))
@@ -59,6 +59,10 @@ function fullName (t) {
 
 function desc (t) {
   return `${fullName(t)} (format: ${t.format}, re-use: ${!!t.reuse}, cache: ${t.cacheSize || 'n/a'}, sync: ${!t.defer})`
+}
+
+function leaky (t) {
+  return t.secure ? '' : '💦'
 }
 
 function check (bool) {
