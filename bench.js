@@ -38,12 +38,12 @@ suite
   })
   .on('cycle', function (event) {
     const t = event.target
-    console.log(`${genName(t)} x ${numeral(t.hz).format('0,0')} ops/sec ±${t.stats.rme.toFixed(2)}% (${t.stats.sample.length} runs sampled)`)
-    readme += `| [${t.name}] | ${check(t.secure)} | ${t.format} | ${check(t.reuse)} | ${t.cacheSize || 'n/a'} | ${check(!t.defer)} | ${numeral(t.hz).format('0,0')} | ±${t.stats.rme.toFixed(2)}% | ${t.stats.sample.length} |\n`
-    csv += `"${t.name}","${t.secure ? 'Y' : 'N'}","${t.format}","${t.reuse ? 'Y' : 'N'}",${t.cacheSize || ''},"${t.defer ? 'N' : 'Y'}",${t.hz},${t.stats.deviation},${t.stats.mean},${t.stats.moe},${t.stats.rme},${t.stats.sample.length},${t.stats.sem},${t.stats.variance}\n`
+    console.log(`${desc(t)} x ${numeral(t.hz).format('0,0')} ops/sec ±${t.stats.rme.toFixed(2)}% (${t.stats.sample.length} runs sampled)`)
+    readme += `| [${t.name}] ${t.postfix || ''} | ${check(t.secure)} | ${t.format} | ${check(t.reuse)} | ${t.cacheSize || 'n/a'} | ${check(!t.defer)} | ${numeral(t.hz).format('0,0')} | ±${t.stats.rme.toFixed(2)}% | ${t.stats.sample.length} |\n`
+    csv += `"${fullName(t)}","${t.secure ? 'Y' : 'N'}","${t.format}","${t.reuse ? 'Y' : 'N'}",${t.cacheSize || ''},"${t.defer ? 'N' : 'Y'}",${t.hz},${t.stats.deviation},${t.stats.mean},${t.stats.moe},${t.stats.rme},${t.stats.sample.length},${t.stats.sem},${t.stats.variance}\n`
   })
   .on('complete', function () {
-    console.log('Fastest is ' + genName(this.filter('fastest')[0]))
+    console.log('Fastest is ' + desc(this.filter('fastest')[0]))
 
     readme += endMarker
     readme += postChunk
@@ -52,8 +52,12 @@ suite
   })
   .run()
 
-function genName (t) {
-  return `${t.name} (format: ${t.format}, re-use: ${!!t.reuse}, cache: ${t.cacheSize || 'n/a'}, sync: ${!t.defer})`
+function fullName (t) {
+  return t.name + (t.postfix ? ' ' + t.postfix : '')
+}
+
+function desc (t) {
+  return `${fullName(t)} (format: ${t.format}, re-use: ${!!t.reuse}, cache: ${t.cacheSize || 'n/a'}, sync: ${!t.defer})`
 }
 
 function check (bool) {
