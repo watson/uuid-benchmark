@@ -6,8 +6,9 @@ module.exports = function (suite) {
   suite.add('cuid', function () {
     cuid()
   }, {
-    postfix: `(${cuid()})`,
     leaky: true,
-    format: 'other'
+    format: 'other',
+    example: cuid(),
+    gid: true
   })
 }

@@ -4,13 +4,16 @@ const hyperid = require('hyperid')
 
 module.exports = function (suite) {
   const name = 'hyperid'
+  const example = hyperid()()
 
   suite.add(name, function () {
     hyperid()()
   }, {
     postfix: 'hyperid()()',
     leaky: true,
-    format: 'other'
+    format: 'other',
+    gid: true,
+    example
   })
 
   suite.add(name, function () {
@@ -21,6 +24,8 @@ module.exports = function (suite) {
     },
     postfix: 'instance()',
     leaky: true,
-    format: 'other'
+    format: 'other',
+    gid: true,
+    example
   })
 }

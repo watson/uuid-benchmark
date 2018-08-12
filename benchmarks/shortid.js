@@ -6,8 +6,9 @@ module.exports = function (suite) {
   suite.add('shortid', function () {
     shortid()
   }, {
-    postfix: `(${shortid()})`,
     leaky: true,
-    format: 'other'
+    format: 'other',
+    example: shortid(),
+    gid: false
   })
 }

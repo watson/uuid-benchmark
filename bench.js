@@ -32,9 +32,11 @@ if (single) {
 
 const readmePath = 'README.md'
 const csvPath = 'results.csv'
-let csv = [['Method', 'Leaky', 'Format', 'Re-use', 'Cache', 'Sync', 'Ops/sec', 'Deviation', 'Mean', 'MOE', 'RME', 'Samples', 'SEM', 'Variance']]
-let uuidTable = tableHeader()
-let otherTable = tableHeader()
+let csv = [['Method', 'GID', 'Leaky', 'Format', 'Re-use', 'Cache', 'Sync', 'Ops/sec', 'Deviation', 'Mean', 'MOE', 'RME', 'Samples', 'SEM', 'Variance']]
+let uuidTable = '| Method | Leaky | Format | Re-use | Cache | Sync | Ops/sec | RME | Samples |\n' +
+                '|--------|-------|--------|--------|-------|------|---------|-----|---------|\n'
+let otherTable = '| Method | GID | Example | Leaky | Format | Re-use | Cache | Sync | Ops/sec | RME | Samples |\n' +
+                 '|--------|-----|---------|-------|--------|--------|-------|------|---------|-----|---------|\n'
 
 suite
   .on('cycle', function (event) {
@@ -42,14 +44,51 @@ suite
 
     console.log(`${desc(t)} x ${numeral(t.hz).format('0,0')} ops/sec ±${t.stats.rme.toFixed(2)}% (${t.stats.sample.length} runs sampled)`)
 
-    const row = `| [${t.name}] ${t.postfix || ''} | ${leaky(t)} | ${t.format} | ${check(t.reuse)} | ${t.cacheSize || 'n/a'} | ${check(!t.defer)} | ${numeral(t.hz).format('0,0')} | ±${t.stats.rme.toFixed(2)}% | ${t.stats.sample.length} |\n`
     if (t.format === 'other') {
-      otherTable += row
+      otherTable += `| ${[
+        `[${t.name}] ${t.postfix || ''}`,
+        check(t.gid),
+        t.example,
+        leaky(t),
+        t.format,
+        check(t.reuse),
+        t.cacheSize || 'n/a',
+        check(!t.defer),
+        numeral(t.hz).format('0,0'),
+        `±${t.stats.rme.toFixed(2)}%`,
+        t.stats.sample.length
+      ].join(' | ')} |\n`
     } else {
-      uuidTable += row
+      uuidTable += `| ${[
+        `[${t.name}] ${t.postfix || ''}`,
+        leaky(t),
+        t.format,
+        check(t.reuse),
+        t.cacheSize || 'n/a',
+        check(!t.defer),
+        numeral(t.hz).format('0,0'),
+        `±${t.stats.rme.toFixed(2)}%`,
+        t.stats.sample.length
+      ].join(' | ')} |\n`
     }
 
-    csv.push([fullName(t), t.leaky ? 'Y' : 'N', t.format, t.reuse ? 'Y' : 'N', t.cacheSize || '', t.defer ? 'N' : 'Y', t.hz, t.stats.deviation, t.stats.mean, t.stats.moe, t.stats.rme, t.stats.sample.length, t.stats.sem, t.stats.variance])
+    csv.push([
+      fullName(t),
+      t.gid ? 'Y' : (t.format === 'other' ? 'N' : 'Y'),
+      t.leaky ? 'Y' : 'N',
+      t.format,
+      t.reuse ? 'Y' : 'N',
+      t.cacheSize || '',
+      t.defer ? 'N' : 'Y',
+      t.hz,
+      t.stats.deviation,
+      t.stats.mean,
+      t.stats.moe,
+      t.stats.rme,
+      t.stats.sample.length,
+      t.stats.sem,
+      t.stats.variance
+    ])
   })
   .on('complete', function () {
     console.log('Fastest is ' + desc(this.filter('fastest')[0]))
@@ -70,11 +109,6 @@ suite
     })
   })
   .run()
-
-function tableHeader () {
-  return '| Method | Leaky | Format | Re-use | Cache | Sync | Ops/sec | RME | Samples |\n' +
-         '|--------|-------|--------|--------|-------|------|---------|-----|---------|\n'
-}
 
 function fullName (t) {
   return t.name + (t.postfix ? ' ' + t.postfix : '')
