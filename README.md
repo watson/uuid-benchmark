@@ -154,7 +154,6 @@ not all of them are globally unique.
 
 - **Method:** Name of npm module, Node.js core function, or OS based random generator used
 - **GID:** Indicates that the ID is globally unique
-- **Example:** Example of a generated ID
 - **Leaky:** Indicates that the method used to generate the 128 bit number doesn't leak metadata
 - **Format:**
   - `uuid` - ID is a UUID formatted string representing a 128 bit number, e.g. `3a017fc5-4f50-4db9-b0ce-4547ba0a1bfd`
@@ -169,6 +168,7 @@ not all of them are globally unique.
 - **Ops/sec:** Number of UUID's generated per second
 - **RME:** The relative margin of error (expressed as a percentage of the mean)
 - **Samples:** Number of runs sampled
+- **Example:** Example of a generated ID
 
 ## License
 
