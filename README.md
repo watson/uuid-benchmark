@@ -158,7 +158,7 @@ not all of them are globally unique.
   - `uuid` - ID is a UUID formatted string representing a 128 bit number, e.g. `3a017fc5-4f50-4db9-b0ce-4547ba0a1bfd`
   - `hex` - ID is a hex formatted string representing a 128 bit number, e.g. `3a017fc54f504db9b0ce4547ba0a1bfd`
   - `buffer` - ID is a raw 128 bit binary Buffer object
-  - `other` - ID is **not** a UUID or 128 bit number, but is still globally unique
+  - `other` - ID is **not** a UUID or 128 bit number, and might not be globally unique
 - **Re-use:** Indicates an output buffer was re-used between each test to potentially reduce the number of objects that needed to be created
 - **Cache:**
   - `n/a` - Only the amount of bytes required to generate a 128 bit number was read into memory
