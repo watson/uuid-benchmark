@@ -141,7 +141,7 @@ _See raw results in [`results.csv`](results.csv)_
 - **Sync:** Indicates that the UUID generation was performed synchronously
 - **Ops/sec:** Number of UUID's generated per second
 - **RME:** The relative margin of error (expressed as a percentage of the mean)
-- **Sampled:** Number of runs sampled
+- **Samples:** Number of runs sampled
 
 ## License
 
