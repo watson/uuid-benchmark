@@ -35,8 +35,8 @@ const csvPath = 'results.csv'
 let csv = [['Method', 'GID', 'Leaky', 'Format', 'Re-use', 'Cache', 'Sync', 'Ops/sec', 'Deviation', 'Mean', 'MOE', 'RME', 'Samples', 'SEM', 'Variance']]
 let uuidTable = '| Method | Leaky | Format | Re-use | Cache | Sync | Ops/sec | RME | Samples |\n' +
                 '|--------|-------|--------|--------|-------|------|---------|-----|---------|\n'
-let otherTable = '| Method | GID | Example | Leaky | Format | Re-use | Cache | Sync | Ops/sec | RME | Samples |\n' +
-                 '|--------|-----|---------|-------|--------|--------|-------|------|---------|-----|---------|\n'
+let otherTable = '| Method | GID | Example | Leaky | Re-use | Cache | Sync | Ops/sec | RME | Samples |\n' +
+                 '|--------|-----|---------|-------|--------|-------|------|---------|-----|---------|\n'
 
 suite
   .on('cycle', function (event) {
@@ -50,7 +50,6 @@ suite
         check(t.gid),
         t.example,
         leaky(t),
-        t.format,
         check(t.reuse),
         t.cacheSize || 'n/a',
         check(!t.defer),
