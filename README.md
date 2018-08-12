@@ -1,6 +1,6 @@
 # Node.js UUID Benchmark 🐢🚀
 
-The following benchmark results are generated on my MacBook (Early 2016) with a 1,3 GHz Intel Core m7 processor.
+The following benchmark results are generated on a MacBook (Early 2016) with a 1,3 GHz Intel Core m7 processor.
 
 _See raw results in [`results.csv`](results.csv)_
 
