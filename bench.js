@@ -14,15 +14,19 @@ const single = process.argv[2]
 if (single) {
   require(single)(suite)
 } else {
+  // uuid
   require('./benchmarks/uuid')(suite)
   require('./benchmarks/fast-uuid')(suite)
   require('./benchmarks/uuid-random')(suite)
   require('./benchmarks/sodium-uuid')(suite)
-  require('./benchmarks/hyperid')(suite)
   require('./benchmarks/crypto.randomBytes')(suite)
   require('./benchmarks/crypto.randomFillSync')(suite)
   require('./benchmarks/crypto.randomFill')(suite)
   require('./benchmarks/dev-random')(suite)
+
+  // other
+  require('./benchmarks/hyperid')(suite)
+  require('./benchmarks/shortid')(suite)
 }
 
 const readmePath = 'README.md'
