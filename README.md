@@ -143,6 +143,8 @@ _See raw results in [`results.csv`](results.csv)_
 | [hyperid] hyperid()() | 💦 | custom |  | n/a | ✅ | 105,753 | ±0.81% | 89 |
 | [hyperid] instance() | 💦 | custom |  | n/a | ✅ | 8,843,573 | ±1.52% | 82 |
 
+## Legend
+
 - **Method:** Name of npm module, Node.js core function, or OS based random generator used
 - **Leaky:** Indicates that the method used to generate the 128 bit number doesn't leak metadata
 - **Format:**
