@@ -9,6 +9,6 @@ module.exports = function (suite) {
     leaky: true,
     format: 'other',
     example: cuid(),
-    gid: true
+    guid: true
   })
 }

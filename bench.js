@@ -32,11 +32,11 @@ if (single) {
 
 const readmePath = 'README.md'
 const csvPath = 'results.csv'
-let csv = [['Method', 'GID', 'Leaky', 'Format', 'Re-use', 'Cache', 'Sync', 'Ops/sec', 'Deviation', 'Mean', 'MOE', 'RME', 'Samples', 'SEM', 'Variance']]
+let csv = [['Method', 'GUID', 'Leaky', 'Format', 'Re-use', 'Cache', 'Sync', 'Ops/sec', 'Deviation', 'Mean', 'MOE', 'RME', 'Samples', 'SEM', 'Variance']]
 let uuidTable = '| Method | Leaky | Format | Re-use | Cache | Sync | Ops/sec | RME | Samples |\n' +
                 '|--------|-------|--------|--------|-------|------|---------|-----|---------|\n'
-let otherTable = '| Method | GID | Leaky | Re-use | Cache | Sync | Ops/sec | RME | Samples | Example |\n' +
-                 '|--------|-----|-------|--------|-------|------|---------|-----|---------|---------|\n'
+let otherTable = '| Method | GUID | Leaky | Re-use | Cache | Sync | Ops/sec | RME | Samples | Example |\n' +
+                 '|--------|------|-------|--------|-------|------|---------|-----|---------|---------|\n'
 
 suite
   .on('cycle', function (event) {
@@ -47,7 +47,7 @@ suite
     if (t.format === 'other') {
       otherTable += `| ${[
         `[${t.name}] ${t.postfix || ''}`,
-        check(t.gid),
+        check(t.guid),
         leaky(t),
         check(t.reuse),
         t.cacheSize || 'n/a',
@@ -73,7 +73,7 @@ suite
 
     csv.push([
       fullName(t),
-      t.gid ? 'Y' : (t.format === 'other' ? 'N' : 'Y'),
+      t.guid ? 'Y' : (t.format === 'other' ? 'N' : 'Y'),
       t.leaky ? 'Y' : 'N',
       t.format,
       t.reuse ? 'Y' : 'N',

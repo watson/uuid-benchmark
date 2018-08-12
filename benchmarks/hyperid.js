@@ -12,7 +12,7 @@ module.exports = function (suite) {
     postfix: 'cold start',
     leaky: true,
     format: 'other',
-    gid: true,
+    guid: true,
     example
   })
 
@@ -25,7 +25,7 @@ module.exports = function (suite) {
     postfix: 'normal',
     leaky: true,
     format: 'other',
-    gid: true,
+    guid: true,
     example
   })
 }
