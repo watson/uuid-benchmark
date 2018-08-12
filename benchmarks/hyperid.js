@@ -10,7 +10,7 @@ module.exports = function (suite) {
   }, {
     postfix: 'hyperid()()',
     leaky: true,
-    format: 'custom'
+    format: 'other'
   })
 
   suite.add(name, function () {
@@ -21,6 +21,6 @@ module.exports = function (suite) {
     },
     postfix: 'instance()',
     leaky: true,
-    format: 'custom'
+    format: 'other'
   })
 }
