@@ -87,11 +87,10 @@ function uuidTable () {
     return b.format !== 'other'
   }).map(function (b) {
     return [
-      `[${b.name}] ${b.postfix || ''}`,
-      leaky(b),
-      random(b),
-      reuse(b),
-      sync(b),
+      method(b),
+      features(b),
+      check(b.reuse),
+      check(!b.defer),
       b.cacheSize || '',
       b.format,
       numeral(b.hz).format('0,0'),
@@ -102,8 +101,7 @@ function uuidTable () {
 
   arr.unshift([
     'Method',
-    'Leaky',
-    'Random',
+    'Features',
     'Re-use',
     'Sync',
     'Cache',
@@ -113,7 +111,7 @@ function uuidTable () {
     'Samples'
   ])
 
-  return table(arr, {align: ['l', 'c', 'c', 'c', 'r', 'l', 'r', 'l', 'r']}) + '\n'
+  return table(arr, {align: ['l', 'l', 'c', 'c', 'r', 'l', 'r', 'l', 'r']}) + '\n'
 }
 
 function otherTable () {
@@ -121,12 +119,10 @@ function otherTable () {
     return b.format === 'other'
   }).map(function (b) {
     return [
-      `[${b.name}] ${b.postfix || ''}`,
-      guid(b),
-      leaky(b),
-      random(b),
-      reuse(b),
-      sync(b),
+      method(b),
+      features(b),
+      check(b.reuse),
+      check(!b.defer),
       b.cacheSize || '',
       numeral(b.hz).format('0,0'),
       `±${b.stats.rme.toFixed(2)}%`,
@@ -137,9 +133,7 @@ function otherTable () {
 
   arr.unshift([
     'Method',
-    'GUID',
-    'Leaky',
-    'Random',
+    'Features',
     'Re-use',
     'Sync',
     'Cache',
@@ -149,7 +143,7 @@ function otherTable () {
     'Example'
   ])
 
-  return table(arr, {align: ['l', 'c', 'c', 'c', 'c', 'r', 'r', 'l', 'r', 'l']}) + '\n'
+  return table(arr, {align: ['l', 'l', 'c', 'c', 'r', 'r', 'l', 'r', 'l']}) + '\n'
 }
 
 function csv (cb) {
@@ -204,22 +198,26 @@ function desc (b) {
   return `${fullName(b)} (format: ${b.format}, re-use: ${!!b.reuse}, cache: ${b.cacheSize || 'n/a'}, sync: ${!b.defer})`
 }
 
-function guid (b) {
-  return b.format !== 'other' || b.guid ? '🌎' : ''
+function method (b) {
+  return `[${b.name}] ${b.postfix || ''}`
 }
 
-function leaky (b) {
-  return b.leaky ? '💦' : ''
+function features (b) {
+  return guid(b) + random(b) + secure(b)
+}
+
+function check (bool) {
+  return bool ? '✅' : ''
+}
+
+function guid (b) {
+  return b.guid ? '🌎' : ''
+}
+
+function secure (b) {
+  return b.leaky ? '' : '🛡️'
 }
 
 function random (b) {
   return b.random ? '🔀' : ''
-}
-
-function reuse (b) {
-  return b.reuse ? '♻️' : ''
-}
-
-function sync (b) {
-  return !b.defer ? '⬇️' : ''
 }

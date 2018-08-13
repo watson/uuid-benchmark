@@ -154,8 +154,10 @@ not all of them are globally unique.
 ## Legend
 
 - **Method:** Name of npm module, Node.js core function, or OS based random generator used
-- **GUID:** The ID is globally unique
-- **Leaky:** The method used to generate the 128 bit number leak metadata
+- **Format:**
+  - 🌎 (GUID) - The ID is globally unique
+  - 🛡 (Secure) - The method used to generate the ID doesn't leak metadata and it's not possible to predict what the next number will be
+  - 🔀 (Random) - The ID contains random data
 - **Re-use:** An output buffer was re-used between each test to potentially reduce the number of objects that needed to be allocated
 - **Sync:** The ID generation was performed synchronously
 - **Cache:**
