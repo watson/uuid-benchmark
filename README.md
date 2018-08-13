@@ -154,7 +154,7 @@ not all of them are globally unique.
 ## Legend
 
 - **Method:** Name of npm module, Node.js core function, or OS based random generator used
-- **Format:**
+- **Features:**
   - 🌎 (GUID) - The ID is globally unique
   - 🛡 (Secure) - The method used to generate the ID doesn't leak metadata and it's not possible to predict what the next number will be
   - 🔀 (Random) - The ID contains random data
