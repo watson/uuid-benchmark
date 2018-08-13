@@ -198,6 +198,7 @@ not all of them are globally unique.
 [fast-uuid]: https://www.npmjs.com/package/fast-uuid
 [uuid-random]: https://www.npmjs.com/package/uuid-random
 [sodium-uuid]: https://www.npmjs.com/package/sodium-uuid
+[sodium-native]: https://www.npmjs.com/package/sodium-native
 [crypto.randomBytes]: https://nodejs.org/api/crypto.html#crypto_crypto_randombytes_size_callback
 [crypto.randomFillSync]: https://nodejs.org/api/crypto.html#crypto_crypto_randomfillsync_buffer_offset_size
 [crypto.randomFill]: https://nodejs.org/api/crypto.html#crypto_crypto_randomfill_buffer_offset_size_callback
