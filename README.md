@@ -155,7 +155,7 @@ not all of them are globally unique.
 
 - **Method:** Name of npm module, Node.js core function, or OS based random generator used
 - **GUID:** Indicates that the ID is globally unique
-- **Leaky:** Indicates that the method used to generate the 128 bit number doesn't leak metadata
+- **Leaky:** Indicates that the method used to generate the 128 bit number leak metadata
 - **Format:**
   - `uuid` - ID is a UUID formatted string representing a 128 bit number, e.g. `3a017fc5-4f50-4db9-b0ce-4547ba0a1bfd`
   - `hex` - ID is a hex formatted string representing a 128 bit number, e.g. `3a017fc54f504db9b0ce4547ba0a1bfd`
