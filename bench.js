@@ -181,7 +181,7 @@ function desc (b) {
 }
 
 function guid (b) {
-  return b.format !== 'other' || b.uuid ? '🌎' : ''
+  return b.format !== 'other' || b.guid ? '🌎' : ''
 }
 
 function leaky (b) {
