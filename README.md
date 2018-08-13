@@ -156,7 +156,7 @@ not all of them are globally unique.
 - **Method:** Name of npm module, Node.js core function, or OS based random generator used
 - **GUID:** The ID is globally unique
 - **Leaky:** The method used to generate the 128 bit number leak metadata
-- **Re-use:** An output buffer was re-used between each test to potentially reduce the number of objects that needed to be created
+- **Re-use:** An output buffer was re-used between each test to potentially reduce the number of objects that needed to be allocated
 - **Sync:** The UUID generation was performed synchronously
 - **Cache:**
   - `n/a` - Only the amount of bytes required to generate a 128 bit number was read into memory
