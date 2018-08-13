@@ -9,6 +9,7 @@
     "cuid": "^2.1.1",
     "fast-uuid": "^1.0.1",
     "hyperid": "^1.4.1",
+    "markdown-table": "^1.1.2",
     "nanoid": "^1.2.0",
     "numeral": "^2.0.6",
     "shortid": "^2.2.12",
