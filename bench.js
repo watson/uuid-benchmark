@@ -38,6 +38,7 @@ if (single) {
   require('./benchmarks/fast-uuid')(suite)
   require('./benchmarks/uuid-random')(suite)
   require('./benchmarks/sodium-uuid')(suite)
+  require('./benchmarks/sodium-native')(suite)
   require('./benchmarks/crypto.randomBytes')(suite)
   require('./benchmarks/crypto.randomFillSync')(suite)
   require('./benchmarks/crypto.randomFill')(suite)
