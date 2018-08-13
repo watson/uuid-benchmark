@@ -154,18 +154,18 @@ not all of them are globally unique.
 ## Legend
 
 - **Method:** Name of npm module, Node.js core function, or OS based random generator used
-- **GUID:** Indicates that the ID is globally unique
-- **Leaky:** Indicates that the method used to generate the 128 bit number leak metadata
+- **GUID:** The ID is globally unique
+- **Leaky:** The method used to generate the 128 bit number leak metadata
+- **Re-use:** An output buffer was re-used between each test to potentially reduce the number of objects that needed to be created
+- **Sync:** The UUID generation was performed synchronously
+- **Cache:**
+  - `n/a` - Only the amount of bytes required to generate a 128 bit number was read into memory
+  - &lt;Number> - Number of bytes read into memory the first time a 128 bit number was requested. Subsequent runs would use the leftover bytes in the cache until it had been depleted, at which time another chunk of bytes would be read into memory
 - **Format:**
   - `uuid` - ID is a UUID formatted string representing a 128 bit number, e.g. `3a017fc5-4f50-4db9-b0ce-4547ba0a1bfd`
   - `hex` - ID is a hex formatted string representing a 128 bit number, e.g. `3a017fc54f504db9b0ce4547ba0a1bfd`
   - `buffer` - ID is a raw 128 bit binary Buffer object
   - `other` - ID is **not** a UUID or 128 bit number, and might not be globally unique
-- **Re-use:** Indicates an output buffer was re-used between each test to potentially reduce the number of objects that needed to be created
-- **Cache:**
-  - `n/a` - Only the amount of bytes required to generate a 128 bit number was read into memory
-  - &lt;Number> - Number of bytes read into memory the first time a 128 bit number was requested. Subsequent runs would use the leftover bytes in the cache until it had been depleted, at which time another chunk of bytes would be read into memory
-- **Sync:** Indicates that the UUID generation was performed synchronously
 - **Ops/sec:** Number of UUID's generated per second
 - **RME:** The relative margin of error (expressed as a percentage of the mean)
 - **Samples:** Number of runs sampled
