@@ -9,6 +9,7 @@ module.exports = function (suite) {
       uuid()
     }, {
       leaky: true,
+      random: false,
       format: 'uuid'
     })
 
@@ -18,6 +19,7 @@ module.exports = function (suite) {
       buf.toString('hex')
     }, {
       leaky: true,
+      random: false,
       format: 'hex'
     })
 
@@ -29,6 +31,7 @@ module.exports = function (suite) {
         this.buf = Buffer.alloc(16)
       },
       leaky: true,
+      random: false,
       format: 'hex',
       reuse: true
     })
@@ -38,6 +41,7 @@ module.exports = function (suite) {
       uuid(null, buf)
     }, {
       leaky: true,
+      random: false,
       format: 'buffer'
     })
 
@@ -48,6 +52,7 @@ module.exports = function (suite) {
         this.buf = Buffer.alloc(16)
       },
       leaky: true,
+      random: false,
       format: 'buffer',
       reuse: true
     })

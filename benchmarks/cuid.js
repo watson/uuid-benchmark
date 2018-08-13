@@ -7,6 +7,7 @@ module.exports = function (suite) {
     cuid()
   }, {
     leaky: true,
+    random: false,
     format: 'other',
     example: cuid(),
     guid: true

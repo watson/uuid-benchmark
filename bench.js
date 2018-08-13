@@ -10,6 +10,24 @@ const suite = new Suite()
 
 suite.cacheSizes = [16 ** 2, 16 ** 3, 16 ** 4]
 
+const origAdd = suite.add
+suite.add = function (...args) {
+  // setup default property values on the Benchmark object
+  // TODO: This will not work if there's no options object
+  for (let i = 0; i < 3; i++) {
+    if (typeof args[i] === 'object') {
+      args[i] = Object.assign({
+        guid: true,
+        leaky: false,
+        random: true,
+        reuse: false
+      }, args[i])
+      break
+    }
+  }
+  return origAdd.apply(this, args)
+}
+
 const single = process.argv[2]
 
 if (single) {
@@ -71,6 +89,7 @@ function uuidTable () {
     return [
       `[${b.name}] ${b.postfix || ''}`,
       leaky(b),
+      random(b),
       reuse(b),
       sync(b),
       b.cacheSize || '',
@@ -84,6 +103,7 @@ function uuidTable () {
   arr.unshift([
     'Method',
     'Leaky',
+    'Random',
     'Re-use',
     'Sync',
     'Cache',
@@ -104,6 +124,7 @@ function otherTable () {
       `[${b.name}] ${b.postfix || ''}`,
       guid(b),
       leaky(b),
+      random(b),
       reuse(b),
       sync(b),
       b.cacheSize || '',
@@ -118,6 +139,7 @@ function otherTable () {
     'Method',
     'GUID',
     'Leaky',
+    'Random',
     'Re-use',
     'Sync',
     'Cache',
@@ -136,6 +158,7 @@ function csv (cb) {
       fullName(b),
       b.format !== 'other' || b.guid ? 'Y' : 'N',
       b.leaky ? 'Y' : 'N',
+      b.random ? 'Y' : 'N',
       b.reuse ? 'Y' : 'N',
       !b.defer ? 'Y' : 'N',
       b.cacheSize || '',
@@ -155,6 +178,7 @@ function csv (cb) {
     'Method',
     'GUID',
     'Leaky',
+    'Random',
     'Re-use',
     'Sync',
     'Cache',
@@ -186,6 +210,10 @@ function guid (b) {
 
 function leaky (b) {
   return b.leaky ? '💦' : ''
+}
+
+function random (b) {
+  return b.random ? '🔀' : ''
 }
 
 function reuse (b) {

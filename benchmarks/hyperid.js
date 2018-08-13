@@ -11,6 +11,7 @@ module.exports = function (suite) {
   }, {
     postfix: 'cold start',
     leaky: true,
+    random: false,
     format: 'other',
     guid: true,
     example
@@ -24,6 +25,7 @@ module.exports = function (suite) {
     },
     postfix: 'normal',
     leaky: true,
+    random: false,
     format: 'other',
     guid: true,
     example
